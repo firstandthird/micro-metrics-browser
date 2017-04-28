@@ -39,7 +39,8 @@ export default class Metrics {
         const end = window.performance.timing.loadEventEnd;
         const value = end - start;
         const isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
-        this.track('browser.performance', value, { isMobile });
+        const url = encodeURIComponent(window.location.pathname);
+        this.track('browser.performance', value, { isMobile, url });
       }
     }
   }

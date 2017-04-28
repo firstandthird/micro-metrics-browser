@@ -41,6 +41,7 @@ test('image should have correct parameters', assert => {
 
   const img = getImages()[0].src;
   assert.ok(img.indexOf('https://localhost/t.gif?type=browser.performance&value=') > -1, 'contains correct start');
-  assert.ok(img.indexOf('&tags=isMobile:') > -1, 'contains correct correct tags');
+  assert.ok(img.indexOf('isMobile:') > -1, 'contains correct isMobile tag');
+  assert.ok(img.indexOf('url:') > -1, 'contains correct url tag');
   assert.end();
 });
