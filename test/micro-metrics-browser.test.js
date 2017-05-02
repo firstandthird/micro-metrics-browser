@@ -1,5 +1,5 @@
 import test from 'tape-rollup';
-import MicroMetrics from '../index';
+import * as microMetrics from '../micro-metrics-browser';
 
 const getImages = () => document.querySelectorAll('img');
 
@@ -11,19 +11,19 @@ const teardown = () => {
 };
 
 test('should normalise host', assert => {
-  const mm = new MicroMetrics('https://localhost/');
+  const mm = new microMetrics.Metrics('https://localhost/');
   assert.equal(mm.host, 'https://localhost', 'last slash is removed');
   assert.end();
 });
 
 test('should not debug by default', assert => {
-  const mm = new MicroMetrics('https://localhost/');
+  const mm = new microMetrics.Metrics('https://localhost/');
   assert.equal(mm.debug, false, 'debug is false');
   assert.end();
 });
 
 test('image should have correct parameters', assert => {
-  const mm = new MicroMetrics('https://localhost/');
+  const mm = new microMetrics.Metrics('https://localhost/');
   mm.track('foo', 100, {
     bar: 'baz',
     test: 'works'
@@ -35,9 +35,9 @@ test('image should have correct parameters', assert => {
   teardown();
 });
 
-test('image should have correct parameters', assert => {
-  const mm = new MicroMetrics('https://localhost/');
-  mm.trackLoad();
+test('performance tracking', assert => {
+  const mm = new microMetrics.Metrics('https://localhost/');
+  microMetrics.performance(mm);
 
   const img = getImages()[0].src;
   assert.ok(img.indexOf('https://localhost/t.gif?type=browser.performance&value=') > -1, 'contains correct start');

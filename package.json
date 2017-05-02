@@ -42,7 +42,7 @@
   },
   "scriptkit": {
     "files": {
-      "dist/micro-metrics-browser.js": "index.js",
+      "dist/micro-metrics-browser.js": "micro-metrics-browser.js",
       "test/micro-metrics-browser.test.dist.js": "test/micro-metrics-browser.test.js"
     },
     "scripts": {
