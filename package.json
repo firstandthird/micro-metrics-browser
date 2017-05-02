@@ -1,6 +1,6 @@
 {
   "name": "micro-metrics-browser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Micro Metrics for the browser",
   "main": "dist/micro-metrics-browser.js",
   "module": "micro-metrics-browser.js",
