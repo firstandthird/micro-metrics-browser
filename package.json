@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Micro Metrics for the browser",
   "main": "dist/micro-metrics-browser.js",
-  "module": "index.js",
+  "module": "micro-metrics-browser.js",
   "keywords": [
     "micro-metrics-browser",
     "metrics"
