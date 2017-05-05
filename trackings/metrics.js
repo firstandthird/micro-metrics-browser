@@ -2,6 +2,7 @@ export default class Metrics {
   constructor(host, debug = false) {
     this.host = host;
     this.debug = debug;
+    this.tracked = [];
 
     if (this.host[host.length - 1] === '/') {
       // URL ending with '/'
@@ -17,9 +18,9 @@ export default class Metrics {
 
     const url = `${this.host}/t.gif?type=${type}&value=${value}&tags=${tags}`;
     this.log(url);
+    this.tracked.push(url);
     const img = new Image();
     img.src = url;
-    document.body.appendChild(img);
   }
 
   log(...args) {
