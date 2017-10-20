@@ -18,10 +18,35 @@ test('image should have correct parameters', assert => {
   mm.track('foo', 100, {
     bar: 'baz',
     test: 'works'
+  }, {
+    key1: 'value1',
+    key2: 'value2'
   });
   const img = mm.tracked[0];
 
-  assert.equal(img, 'https://localhost/t.gif?type=foo&value=100&tags=bar:baz,test:works', 'data should be correct');
+  assert.equal(img, 'https://localhost/t.gif?type=foo&value=100&tags=bar:baz,test:works&data=key1:value1,key2:value2', 'data should be correct');
+  assert.end();
+});
+
+test('image can be formed by empty data or empty tags', assert => {
+  const mm = new microMetrics.Metrics('https://localhost/');
+  mm.track('foo', 100, {}, {
+    key1: 'value1',
+    key2: 'value2'
+  });
+  mm.track('foo', 100);
+  mm.track('foo', 100, {
+    bar: 'baz',
+    test: 'works'
+  });
+
+  const img1 = mm.tracked[0];
+  const img2 = mm.tracked[1];
+  const img3 = mm.tracked[2];
+
+  assert.equal(img1, 'https://localhost/t.gif?type=foo&value=100&data=key1:value1,key2:value2', 'data should be correct');
+  assert.equal(img2, 'https://localhost/t.gif?type=foo&value=100', 'data should be correct');
+  assert.equal(img3, 'https://localhost/t.gif?type=foo&value=100&tags=bar:baz,test:works', 'data should be correct');
   assert.end();
 });
 
