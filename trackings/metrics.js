@@ -10,13 +10,21 @@ export default class Metrics {
     }
   }
 
-  track(type, value, tagsObj) {
-    const tags = Object
-      .keys(tagsObj)
-      .map(tag => `${tag}:${tagsObj[tag]}`)
-      .join(',');
+  track(type, value, tagsObj = {}, dataObj = {}) {
+    const values = [`type=${type}`, `value=${value}`];
+    const tags = Metrics.serializeObject(tagsObj);
+    const data = Metrics.serializeObject(dataObj);
 
-    const url = `${this.host}/t.gif?type=${type}&value=${value}&tags=${tags}`;
+    if (tags) {
+      values.push(`tags=${tags}`);
+    }
+
+    if (data) {
+      values.push(`data=${data}`);
+    }
+
+    const url = `${this.host}/t.gif?${values.join('&')}`;
+
     this.log(url);
     this.tracked.push(url);
     const img = new Image();
@@ -27,5 +35,12 @@ export default class Metrics {
     if (this.debug) {
       console.log('METRICS', args); //eslint-disable-line no-console
     }
+  }
+
+  static serializeObject(obj) {
+    return Object
+      .keys(obj)
+      .map(key => `${key}:${obj[key]}`)
+      .join(',');
   }
 }
