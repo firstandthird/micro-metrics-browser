@@ -60,3 +60,14 @@ test('performance tracking', assert => {
   assert.ok(img.indexOf('url:') > -1, 'contains correct url tag');
   assert.end();
 });
+
+test('conversion', assert => {
+  const mm = new microMetrics.Metrics('https://localhost/');
+  mm.conversion('test1', 'impression', 'a', '123', {
+    test: 'works'
+  });
+  const img = mm.tracked[0];
+
+  assert.equal(img, 'https://localhost/c.gif?name=test1&event=impression&option=a&session=123&data=test:works', 'data should be correct');
+  assert.end();
+});

@@ -31,6 +31,19 @@ export default class Metrics {
     img.src = url;
   }
 
+  conversion(name, event, option, session, dataObj = {}) {
+    const values = [`name=${name}`, `event=${event}`, `option=${option}`, `session=${session}`];
+    const data = Metrics.serializeObject(dataObj);
+    if (data) {
+      values.push(`data=${data}`);
+    }
+    const url = `${this.host}/c.gif?${values.join('&')}`;
+    this.log(url);
+    this.tracked.push(url);
+    const img = new Image();
+    img.src = url;
+  }
+
   log(...args) {
     if (this.debug) {
       console.log('METRICS', args); //eslint-disable-line no-console
