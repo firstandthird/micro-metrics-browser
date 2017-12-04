@@ -14,7 +14,7 @@
   <script>
     const mm = new MicroMetricsBrowser.Metrics('https://localhost/');
 
-    mm.trackElements([{
+    const mmt = new MicroMetricsBrowser.Tracking('https://localhost/', [{
       element: 'button',
       type: 'Type',
       value: 'Value',
