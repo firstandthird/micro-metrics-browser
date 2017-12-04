@@ -2,7 +2,7 @@ import Metrics from './metrics';
 import { on, find, ready } from 'domassist';
 
 export default class Tracking {
-  constructor(url, element, options = {}) {
+  constructor(url = window.metricsEndpoint, element, options = {}) {
     if (url) {
       this.metrics = new Metrics(url);
       if (element) {
