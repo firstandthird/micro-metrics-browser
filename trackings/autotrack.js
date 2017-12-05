@@ -1,5 +1,5 @@
 import Metrics from './metrics';
-import { delegate } from 'domassist';
+import { delegate, ready } from 'domassist';
 
 function getData(element, options = {}) {
   const dataset = element.dataset;
@@ -45,4 +45,4 @@ export default function autoTrack(url, options = {}) {
   });
 }
 
-autoTrack();
+ready(autoTrack());
