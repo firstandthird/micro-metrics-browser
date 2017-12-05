@@ -1,9 +1,9 @@
 import performance from './trackings/performance';
 import Metrics from './trackings/metrics';
-import Tracking from './trackings/tracking';
+import autoTrack from './trackings/autotrack';
 
 export default {
   Metrics,
-  Tracking,
+  autoTrack,
   performance
 };

@@ -8,19 +8,10 @@
 </head>
 <body>
   <a href="#" data-mm-track data-mm-track-href="false" data-mm-track-type="Type" data-mm-track-value="Value" data-mm-track-tag-one="1" data-mm-track-tag-two="2" data-mm-track-data-foo="bar" data-mm-track-data-qax="baz">Test</a>
-  <button>Click</button>
 
   <script src="../dist/micro-metrics-browser.js"></script>
   <script>
     const mm = new MicroMetricsBrowser.Metrics('https://localhost/');
-
-    const mmt = new MicroMetricsBrowser.Tracking('https://localhost/', [{
-      element: 'button',
-      type: 'Type',
-      value: 'Value',
-      data: { a: 1 },
-      tags: { b: 2 }
-    }]);
   </script>
 </body>
 </html>
