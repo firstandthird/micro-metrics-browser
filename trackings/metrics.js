@@ -1,7 +1,7 @@
 export default class Metrics {
   constructor(host, debug = false) {
     this.host = host;
-    this.debug = debug || (typeof window.localStorage === 'object' && window.localStorage.getItem('MetricsDebug'));
+    this.debug = debug || (typeof window.localStorage === 'object' && !!window.localStorage.getItem('MetricsDebug'));
     this.tracked = [];
 
     if (this.host[host.length - 1] === '/') {
