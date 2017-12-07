@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Micro Metrics Browser Example</title>
+</head>
+<body>
+  <a href="#" data-mm-track data-mm-track-href="false" data-mm-track-type="Type" data-mm-track-value="Value" data-mm-track-tag-one="1" data-mm-track-tag-two="2" data-mm-track-data-foo="bar" data-mm-track-data-qax="baz">Test</a>
+
+  <script src="../dist/micro-metrics-browser.js"></script>
+  <script>
+    const mm = new MicroMetricsBrowser.Metrics('https://localhost/');
+  </script>
+</body>
+</html>
