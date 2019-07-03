@@ -1,6 +1,6 @@
 export default class Metrics {
-  constructor(host, debug = false) {
-    this.host = host;
+  constructor(host = '', debug = false) {
+    this.host = host || window.metricsEndpoint;
     this.debug = debug || (typeof window.localStorage === 'object' && !!window.localStorage.getItem('MetricsDebug'));
     this.tracked = [];
 
