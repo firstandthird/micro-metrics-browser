@@ -9,9 +9,15 @@
 <body>
   <a href="#" data-mm-track data-mm-track-href="false" data-mm-track-type="Type" data-mm-track-value="Value" data-mm-track-tag-one="1" data-mm-track-tag-two="2" data-mm-track-data-foo="bar" data-mm-track-data-qax="baz">Test</a>
 
-  <script src="../dist/micro-metrics-browser.js"></script>
   <script>
-    const mm = new MicroMetricsBrowser.Metrics('https://localhost/');
+    window.metricsEndpoint = 'http://localhost/';
+  </script>
+
+  <script src="../dist/micro-metrics-browser.bundle.js"></script>
+  <script>
+    const mm = new microMetricsBrowser.Metrics();
+
+    mm.track('metricType', 'metricValue', { tag: 'myTag' }, { data: 'myData' });
   </script>
 </body>
 </html>

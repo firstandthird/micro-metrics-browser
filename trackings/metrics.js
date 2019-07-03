@@ -1,12 +1,12 @@
 export default class Metrics {
-  constructor(host, debug = false) {
-    this.host = host;
+  constructor(host = null, debug = false) {
+    this.host = host || window.metricsEndpoint || '';
     this.debug = debug || (typeof window.localStorage === 'object' && !!window.localStorage.getItem('MetricsDebug'));
     this.tracked = [];
 
-    if (this.host[host.length - 1] === '/') {
+    if (this.host[this.host.length - 1] === '/') {
       // URL ending with '/'
-      this.host = host.slice(0, -1);
+      this.host = this.host.slice(0, -1);
     }
   }
 
