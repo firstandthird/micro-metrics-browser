@@ -71,3 +71,19 @@ test('conversion', assert => {
   assert.equal(img, 'https://localhost/c.gif?name=test1&event=impression&option=a&session=123&data=test:works', 'data should be correct');
   assert.end();
 });
+
+test('defined endpoint in window, no host provided', assert => {
+  window.metricsEndpoint = 'https://localhost/';
+
+  const mm = new microMetrics.Metrics();
+
+  mm.track('foo', 100, {}, {
+    key1: 'value1',
+    key2: 'value2'
+  });
+
+  const tracked = mm.tracked[0];
+
+  assert.equal(tracked, 'https://localhost/t.gif?type=foo&value=100&data=key1:value1,key2:value2', 'data should be correct');
+  assert.end();
+});
